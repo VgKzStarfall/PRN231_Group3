@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .page-item[selected]{
+        background-color: rebeccapurple;
+        color: white;
+    }
+</style>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Departments</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-6 input-group" style="float: right;">
+                    <div class="form-outline">
+                        <input type="search" id="department-search" class="form-control" placeholder="Search..." value="@ViewData["key"]" />
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <h6 class="col-6 m-0 font-weight-bold text-primary"></h6>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var data in Model)
+                        {
+                            <tr>
+                                <td>@data.Id</td>
+                                <td>@data.DepartmentName</td>
+                                <td>@data.Location.StreetAddress</td>
+                                <td>@data.Location.City</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div style="display:flex;justify-content:center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            @for (int i = 1; i < ViewBag.TotalPage; i++)
+                            {
+                                <li class="page-item" selected><a class="page-link">@i</a></li>
+                            }
+                            <li>
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<script>
+    $(document).ready(function () {
+        $('button').click(function () {
+            var name = $('#department-search').val();
+            window.location.href = "/department?name=" + name;
+        });
+    });
+</script>

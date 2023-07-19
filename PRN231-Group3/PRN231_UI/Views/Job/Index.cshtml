@@ -1,0 +1,112 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Jobs</h1>
+    <p class="mb-4">
+        Jobs Management
+    </p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-4">
+                    <form method="get" action="/job/index" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <div class="form-outline">
+                                <input value="@ViewBag.Keyword" type="text" class="form-control" name="search" placeholder="Search..."
+                                       aria-label="Search" aria-describedby="basic-addon2">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+
+
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4">
+                </div>
+                <div class="col-4">
+                    <h6 class="m-0 font-weight-bold text-primary" style="display:flex;justify-content:flex-end;">
+                        <a class="btn btn-primary" href="/job/update">Create</a>
+                    </h6>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>JobTitle</th>
+                            <th>MinSalary</th>
+                            <th>MaxSalary</th>
+                            <th>Skills Require</th>
+                            <th>CreatedDate</th>
+                            <th>ExpiredDate</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            foreach (var item in ViewBag.Data)
+                            {
+                                <tr>
+                                    <td>@item.ID</td>
+                                    <td>@item.JobTitle</td>
+                                    <td>@item.MinSalary</td>
+                                    <td>@item.MaxSalary</td>
+                                    <td>@item.Skills</td>
+                                    <td>@item.CreatedDate</td>
+                                    <td>@item.ExpiredDate</td>
+                                    <td>
+                                        <a href="/job/update?id=@item.ID">
+                                            <i class="fa-solid fa-pen-to-square" style="color: #005eff;"></i>
+                                        </a>
+                                        <a href="/job/delete?id=@item.ID"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div style="display:flex;justify-content:center">
+                    <form method="get" action="/job">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><button name="pageIndex" class="page-link" type="submit" value="1">1</button></li>
+                                <li class="page-item"><button name="pageIndex" class="page-link" type="submit" value="2">2</button></li>
+                                <li class="page-item"><button name="pageIndex" class="page-link" type="submit" value="3">3</button></li>
+                                <li class="page-item"><button name="pageIndex" class="page-link" type="submit" value="4">4</button></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- /.container-fluid -->
