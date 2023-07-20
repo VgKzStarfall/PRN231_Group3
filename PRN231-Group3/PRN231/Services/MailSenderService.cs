@@ -8,8 +8,8 @@ namespace PRN231.Services
     {
         public static async Task SendEmailAsync(string subject, string body, string toEmail)
         {
-            var email = "anhbdhe151175@fpt.edu.vn";
-            var password = "0943993221";
+            var email = "toftoftofvanka@gmail.com";
+            var password = "toftoftof";
 
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(MailboxAddress.Parse(email));
@@ -22,7 +22,7 @@ namespace PRN231.Services
             builder.HtmlBody = body;
             emailMessage.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();
-            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.None);
+            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
             smtp.Authenticate(email, password);
             await smtp.SendAsync(emailMessage);
             smtp.Disconnect(true);

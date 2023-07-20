@@ -23,8 +23,6 @@ public partial class ApplicationContext : DbContext
 
     public virtual DbSet<Interviewer> Interviewers { get; set; }
 
-    public virtual DbSet<InterviewerCandidate> InterviewerCandidates { get; set; }
-
     public virtual DbSet<Job> Jobs { get; set; }
 
     public virtual DbSet<JobsSkill> JobsSkills { get; set; }
@@ -34,9 +32,7 @@ public partial class ApplicationContext : DbContext
     public virtual DbSet<Region> Regions { get; set; }
 
     public virtual DbSet<Skill> Skills { get; set; }
-
-    public virtual DbSet<Stage> Stages { get; set; }
-
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var builder = new ConfigurationBuilder()
@@ -145,24 +141,6 @@ public partial class ApplicationContext : DbContext
                 .HasColumnName("position");
         });
 
-        modelBuilder.Entity<InterviewerCandidate>(entity =>
-        {
-            entity.HasKey(e => new { e.InterviewerId, e.CandidateId });
-
-            entity.ToTable("interviewer_candidate");
-
-            entity.Property(e => e.InterviewerId).HasColumnName("interviewer_id");
-            entity.Property(e => e.CandidateId).HasColumnName("candidate_id");
-            entity.Property(e => e.Score).HasColumnName("score");
-
-            
-
-            entity.HasOne(d => d.Interviewer).WithMany(p => p.InterviewerCandidates)
-                .HasForeignKey(d => d.InterviewerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_interviewer_candidate_interviewer");
-        });
-
         modelBuilder.Entity<Job>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__jobs__3213E83F0D65D3F9");
@@ -259,17 +237,6 @@ public partial class ApplicationContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasColumnName("name");
-        });
-
-        modelBuilder.Entity<Stage>(entity =>
-        {
-            entity.ToTable("stages");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("name");
-            entity.Property(e => e.StageIndex).HasColumnName("stage_index");
         });
 
         OnModelCreatingPartial(modelBuilder);

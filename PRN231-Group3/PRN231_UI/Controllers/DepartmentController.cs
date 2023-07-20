@@ -23,7 +23,7 @@ namespace PRN231_UI.Controllers
             ViewData["FullName"] = HttpContext.Session.GetString("FullName");
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("FullName")))
             {
-                TempData["message"] = "Please Login!!!";
+                TempData["message"] = "Please Login!";
                 return Redirect("/login/index");
             }
             List<Department> departments = new();

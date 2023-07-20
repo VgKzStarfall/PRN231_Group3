@@ -12,5 +12,4 @@ public partial class Interviewer : BaseEntity
     public string? Email { get; set; } = null!;
     public string? Password { get; set; } = null!;
 
-    public virtual ICollection<InterviewerCandidate> InterviewerCandidates { get; } = new List<InterviewerCandidate>();
 }

@@ -11,7 +11,6 @@ builder.Services.AddScoped<ApplicationContext>();
 builder.Services.AddScoped<RegionService>();
 builder.Services.AddScoped<JobService>();
 builder.Services.AddScoped<SkillService>();
-builder.Services.AddScoped<StageService>();
 
 
 builder.Services.AddControllers().AddJsonOptions(x =>

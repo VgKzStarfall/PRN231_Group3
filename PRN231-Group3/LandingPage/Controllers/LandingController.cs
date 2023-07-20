@@ -35,19 +35,6 @@ namespace LandingPage.Controllers
             var dataString = response.Content.ReadAsStringAsync().Result;
             var dataObject = JsonConvert.DeserializeObject<ListDataOutput<JobResponse>>(dataString);
             ViewBag.Data = dataObject.Data;
-
-
-            //Candidate request2 = new Candidate()
-            //{
-            //    FirstName = form["firstName"].ToString(),
-            //    LastName = form["lastName"].ToString(),
-            //    PhoneNumber = form["phone"].ToString(),
-            //    Email = form["email"].ToString(),
-            //    JobId = Int32.Parse(form["jobId"].ToString()),
-            //    Salary = Decimal.Parse(form["salary"].ToString()),
-            //};
-
-            //StringContent content2 = new StringContent(JsonConvert.SerializeObject(request2), Encoding.UTF8, "application/json");
             HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + Constants.DEPARTMENT_API).Result;
 
             var dataString2 = response2.Content.ReadAsStringAsync().Result;

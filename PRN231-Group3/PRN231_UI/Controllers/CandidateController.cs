@@ -55,9 +55,6 @@ namespace PRN231_UI.Controllers
 
             }
 
-
-
-
             ViewBag.Current = pageIndex ?? 1;
             ViewBag.TotalPage = (int)Math.Ceiling(candidates.Count() * 1.0 / Constants.PAGE_SIZE);
 

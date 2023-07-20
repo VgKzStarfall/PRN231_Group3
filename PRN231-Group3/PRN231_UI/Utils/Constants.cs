@@ -18,12 +18,6 @@
         public const string SKILL_UPDATE = "/Skill/Update";
         public const string SKILL_DELETE = "/Skill/Delete";
         public const string SKILL_GETBYID = "/Skill/GetByID";
-        //Stage
-        public const string STAGE_GETALL = "/Stage/GetFilter";
-        public const string STAGE_INSERT = "/Stage/Insert";
-        public const string STAGE_UPDATE = "/Stage/Update";
-        public const string STAGE_DELETE = "/Stage/Delete";
-        public const string STAGE_GETBYID = "/Stage/GetByID";
 
 
 
